@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCL-90症状自评量表测试 - 专业心理健康评估</title>
+    <meta name="description" content="免费SCL-90症状自评量表测试，专业心理健康评估工具，帮助您了解自己的心理状态">
+    <!-- 外部资源：Bootstrap Icons图标库（CDN） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- 引入外部CSS文件（同级文件夹） -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><<i class="bi bi-clipboard-heart"></</i> SCL-90症状自评量表测试</h1>
+            <p>以下列出了有些人可能会有的问题，请仔细阅读每一条，然后根据最近一星期以内您的实际感觉，选择最符合您情况的选项。</p>
+        </header>
+
+        <div class="instructions">
+            <h2><<i class="bi bi-info-circle"></</i> 指导语</h2>
+            <p>本量表包含90个项目，涉及感觉、情感、思维、意识、行为、生活习惯、人际关系、饮食睡眠等。请根据您最近一周的实际感受进行评分：</p>
+            <ul>
+                <li><strong>1分-没有</strong>：自觉无该项症状</li>
+                <li><strong>2分-很轻</strong>：自觉有该项症状，但影响轻微</li>
+                <li><strong>3分-中等</strong>：自觉有该项症状，程度为轻到中度</li>
+                <li><strong>4分-偏重</strong>：自觉有该项症状，程度为中到严重</li>
+                <li><strong>5分-严重</strong>：自觉有该项症状，程度十分严重</li>
+            </ul>
+            <p>请注意：本测试仅供参考，不能替代专业医疗诊断。如有严重心理困扰，请咨询专业心理医生。</p>
+        </div>
+
+        <div class="progress-info">
+            <span><<i class="bi bi-check-circle"></</i> 完成进度: <span id="progress">0</span>/90</span>
+            <span><<i class="bi bi-clock"></</i> 剩余: <span id="remaining">90</span>题</span>
+        </div>
+
+        <div class="completion-message" id="completion-message">
+            <<i class="bi bi-check-lg"></</i> 您已完成所有题目，请点击下方按钮提交测试
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>正在计算测试结果，请稍候...</p>
+        </div>
+
+        <form id="scl90-test">
+            <div class="question-container" id="questions">
+                <!-- 问题将通过JavaScript动态生成 -->
+            </div>
+
+            <button type="submit" class="submit-btn"><<i class="bi bi-send"></</i> 提交测试</button>
+        </form>
+
+        <div id="results">
+            <h2 class="results-header"><<i class="bi bi-graph-up"></</i> 测试结果分析</h2>
+
+            <div class="score-summary">
+                <div class="score-card">
+                    <div class="score-label">总分</div>
+                    <div class="score-value" id="total-score">0</div>
+                    <div>满分450分</div>
+                </div>
+
+                <div class="score-card">
+                    <div class="score-label">总症状指数</div>
+                    <div class="score-value" id="total-index">0</div>
+                    <div>总均分</div>
+                </div>
+
+                <div class="score-card">
+                    <div class="score-label">阳性项目数</div>
+                    <div class="score-value" id="positive-items">0</div>
+                    <div>≥2分的项目数</div>
+                </div>
+
+                <div class="score-card">
+                    <div class="score-label">阳性症状均分</div>
+                    <div class="score-value" id="positive-score">0</div>
+                    <div>阳性项目平均分</div>
+                </div>
+            </div>
+
+            <h3>各因子分详情</h3>
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <<th>因子名称</</th>
+                        <<th>得分</</th>
+                        <<th>正常范围</</th>
+                        <<th>状态</</th>
+                        <<th>解释说明</</th>
+                    </tr>
+                </thead>
+                <tbody id="factor-results">
+                    <!-- 因子结果将通过JavaScript动态生成 -->
+                </tbody>
+            </table>
+
+            <div class="factor-details" id="factor-details">
+                <!-- 因子详细解释将通过JavaScript动态生成 -->
+            </div>
+
+            <button class="print-btn" onclick="window.print()"><<i class="bi bi-printer"></</i> 打印测试结果</button>
+
+            <div class="interpretation">
+                <h3>结果说明与建议</h3>
+                <p>SCL-90量表采用5级评分制，通常因子分超过1.5分即表示可能存在该方面的症状，超过2分表明症状达到中等程度，超过3分表明症状较为严重。</p>
+                <p>本测试结果仅供参考，不能作为临床诊断依据。如果您在某些因子上的得分较高，建议关注这些方面的心理健康，并考虑咨询专业心理医生。</p>
+                <p>请注意：心理健康是动态变化的，单次测试结果不能完全代表您的心理状态。如有需要，请寻求专业机构的帮助。</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2023 SCL-90症状自评量表测试 | 本测试仅供参考，不作为临床诊断依据</p>
+        </footer>
+    </div>
+    <!-- 引入外部JS文件（同级文件夹，放在body末尾确保DOM加载完成） -->
+    <script src="script.js"></script>
+</body>
+</html>
